@@ -1,27 +1,30 @@
 class Solution {
 public:
     long long maximumSubarraySum(vector<int>& nums, int k) {
-        int n= nums.size();
-        long long max_sum=0;
-        unordered_map<int,int> freq;
-        long long win_sum=0;
-        for(int i=0;i<n;++i){
-            freq[nums[i]]++;
-            win_sum+=nums[i];
-            if(i>=k){
-                win_sum-=nums[i-k];
-                freq[nums[i-k]]--;
-                if (freq[nums[i-k]]==0){
-                    freq.erase(nums[i-k]);
-                }
-            }
-            if(i>=k-1 and freq.size()==k){
-                max_sum=max(max_sum,win_sum);
-            }
+        int i=0;
+        int j=0;
+        long long sum=0;
+        long long maxsum=0;
+        set<int>st;
 
+        while(j<nums.size()){
+            while(st.count(nums[j])){
+                st.erase(nums[i]);
+                sum-=nums[i];
+                i++;
+            }
+            st.insert(nums[j]);
+            sum+=nums[j];
+            
+            if(j-i+1==k){
+                maxsum=max(sum,maxsum);
+                st.erase(nums[i]);
+                sum-=nums[i];
+                i++;
+            }
+            j++;
         }
-        return max_sum;
-       
-        
+        return maxsum;
+
     }
 };
