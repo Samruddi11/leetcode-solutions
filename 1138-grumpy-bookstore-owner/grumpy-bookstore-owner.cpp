@@ -15,7 +15,7 @@ public:
             if(g[i]==1){
                 sum+=c[i];
             }
-            if(i>=m && g[i-m]==1){
+            if(i>=m && g[i-m]==1){  // Remove element that falls outside window
                 sum-=c[i-m];
             }
             maxsum=max(sum,maxsum);
