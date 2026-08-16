@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findMiddleIndex(vector<int>& nums) {
-         vector<int>p(nums.size());
+        vector<int>p(nums.size());
         vector<int>s(nums.size());
         p[0]=nums[0];
         s[nums.size()-1]=nums[nums.size()-1];
